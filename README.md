@@ -78,6 +78,19 @@ jobs:
 
 ## Requirements
 
+- **Allow Actions to create pull requests** — by default GitHub blocks this,
+  and the run fails with
+  `GitHub Actions is not permitted to create or approve pull requests`.
+  Enable it in the caller repo:
+  **Settings → Actions → General → Workflow permissions** → check
+  *"Allow GitHub Actions to create and approve pull requests"* — or via CLI:
+
+  ```bash
+  gh api -X PUT repos/<owner>/<repo>/actions/permissions/workflow \
+    -f default_workflow_permissions=write \
+    -F can_approve_pull_request_reviews=true
+  ```
+
 - Squash-merge PRs and make the PR title a conventional commit (or enforce
   conventional commits on every commit).
 - The caller repo must grant `contents: write` and `pull-requests: write`
