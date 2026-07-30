@@ -11,6 +11,10 @@ on:
         description: "Branch to open release PRs against"
         type: string
         default: main
+      update-major-tag:
+        description: "Keep a moving major tag (e.g. v1) pointing at the latest release"
+        type: boolean
+        default: true
     outputs:
       release_created:
         description: "Whether a GitHub release was created in this run"
@@ -39,3 +43,23 @@ jobs:
         with:
           release-type: ${{ inputs.release-type }}
           target-branch: ${{ inputs.target-branch }}
+
+  update-major-tag:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true' && inputs.update-major-tag
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Move major tag to latest release
+        env:
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
+        run: |
+          major="${TAG_NAME%%.*}"
+          git tag -f "$major" "$TAG_NAME"
+          git push origin "$major" --force
+
