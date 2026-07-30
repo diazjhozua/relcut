@@ -37,7 +37,7 @@ permissions:
 
 jobs:
   release:
-    uses: <owner>/relcut/.github/workflows/release.yml@v1
+    uses: diazjhozua/relcut/.github/workflows/release.yml@v1
     with:
       release-type: simple # or node, python, go, java, rust, ...
 ```
@@ -66,7 +66,7 @@ Use outputs to chain jobs (e.g. publish artifacts only when a release happened):
 ```yaml
 jobs:
   release:
-    uses: <owner>/relcut/.github/workflows/release.yml@v1
+    uses: diazjhozua/relcut/.github/workflows/release.yml@v1
 
   publish:
     needs: release
