@@ -1,0 +1,16 @@
+name: Self Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    uses: ./.github/workflows/release.yml
+    with:
+      release-type: simple
+      update-major-tag: true
