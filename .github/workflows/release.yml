@@ -1,0 +1,41 @@
+name: relcut
+
+on:
+  workflow_call:
+    inputs:
+      release-type:
+        description: "release-please release type (simple, node, python, go, etc.)"
+        type: string
+        default: simple
+      target-branch:
+        description: "Branch to open release PRs against"
+        type: string
+        default: main
+    outputs:
+      release_created:
+        description: "Whether a GitHub release was created in this run"
+        value: ${{ jobs.release-please.outputs.release_created }}
+      tag_name:
+        description: "The tag of the created release (e.g. v1.2.3)"
+        value: ${{ jobs.release-please.outputs.tag_name }}
+      version:
+        description: "The version of the created release (e.g. 1.2.3)"
+        value: ${{ jobs.release-please.outputs.version }}
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: ${{ inputs.release-type }}
+          target-branch: ${{ inputs.target-branch }}
