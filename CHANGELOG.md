@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/diazjhozua/relcut/compare/v1.1.0...v1.2.0) (2026-07-31)
+
+
+### Features
+
+* add reusable pull request title linter workflow ([8e9c665](https://github.com/diazjhozua/relcut/commit/8e9c6652c0f782e6a695efb4b33136ff529e9538))
+* expose release-please config and manifest file inputs ([09be9f6](https://github.com/diazjhozua/relcut/commit/09be9f6e2234a28faebed0d49789d8ca57535c54))
+* print actionable hint when PR creation permission is missing ([b42ea3c](https://github.com/diazjhozua/relcut/commit/b42ea3c9366a9d50e247cae446253f49ff02c1fd))
+
 ## [1.1.0](https://github.com/diazjhozua/relcut/compare/v1.0.0...v1.1.0) (2026-07-31)
 
 
