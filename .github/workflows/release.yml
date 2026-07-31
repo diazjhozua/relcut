@@ -15,6 +15,14 @@ on:
         description: "Keep a moving major tag (e.g. v1) pointing at the latest release"
         type: boolean
         default: true
+    secrets:
+      release-token:
+        description: >-
+          Token used to create release PRs, tags, and releases. Defaults to
+          GITHUB_TOKEN, which cannot trigger downstream workflows (e.g.
+          on: push: tags). Pass a PAT or GitHub App token if you chain
+          workflows off releases.
+        required: false
     outputs:
       release_created:
         description: "Whether a GitHub release was created in this run"
@@ -41,6 +49,7 @@ jobs:
         id: release
         uses: googleapis/release-please-action@v4
         with:
+          token: ${{ secrets.release-token || github.token }}
           release-type: ${{ inputs.release-type }}
           target-branch: ${{ inputs.target-branch }}
 
@@ -55,6 +64,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.release-token || github.token }}
       - name: Move major tag to latest release
         env:
           TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
