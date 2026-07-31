@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/diazjhozua/relcut/compare/v1.0.0...v1.1.0) (2026-07-31)
+
+
+### Features
+
+* support custom release token for downstream workflow triggers ([c57a2fa](https://github.com/diazjhozua/relcut/commit/c57a2fab3742089c273bbb155394d4527ffd4987))
+
+
+### Bug Fixes
+
+* pin third-party actions to immutable commit SHAs ([28125f1](https://github.com/diazjhozua/relcut/commit/28125f1bc70315df78e73ee3c99d6d84c888cd27))
+* serialize release runs to avoid racing on the release PR ([6fe9155](https://github.com/diazjhozua/relcut/commit/6fe91550a2331525b38a06fc18321f1c73264fcd))
+
 ## 1.0.0 (2026-07-30)
 
 
