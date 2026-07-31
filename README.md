@@ -148,6 +148,22 @@ caller repo for advanced control (changelog sections, monorepo packages,
 initial versions). See the
 [release-please docs](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md).
 
+## Versioning policy
+
+relcut follows SemVer, and the workflow interface is the API:
+
+- **Pin `@v1`** (recommended). The `v1` tag always points at the latest
+  `v1.x.y` release, so you get fixes and new inputs automatically.
+- Within `v1`: existing inputs, outputs, secrets, and their defaults will not
+  change behavior or be removed. New inputs may be added (always optional,
+  with backward-compatible defaults).
+- A breaking change — removing/renaming an input or output, changing a
+  default, requiring a new permission — ships as `v2` with a migration note
+  in the release notes. `v1` keeps working and keeps receiving critical fixes
+  until noted otherwise.
+- Pinning `@main` gets you unreleased commits and future majors without
+  warning; only do that if you accept breakage.
+
 ## Dogfooding
 
 This repository releases itself with its own workflow — see
