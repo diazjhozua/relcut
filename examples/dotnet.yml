@@ -1,0 +1,17 @@
+# .NET projects: release-please has no dotnet strategy, so use `simple`
+# (maintains version.txt + CHANGELOG.md). Save as .github/workflows/release.yml
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    uses: diazjhozua/relcut/.github/workflows/release.yml@v1
+    with:
+      release-type: simple

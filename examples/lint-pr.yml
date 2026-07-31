@@ -1,0 +1,14 @@
+# Fail PRs whose title is not a conventional commit, so squash-merges always
+# feed the release pipeline. Save as .github/workflows/lint-pr.yml
+name: Lint PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  lint:
+    uses: diazjhozua/relcut/.github/workflows/lint-pr.yml@v1
