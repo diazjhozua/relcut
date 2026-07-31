@@ -66,6 +66,11 @@ jobs:
           config-file: ${{ inputs.config-file }}
           manifest-file: ${{ inputs.manifest-file }}
 
+      - name: Explain common permission failure
+        if: failure()
+        run: |
+          echo "::error title=relcut::If the error above says 'GitHub Actions is not permitted to create or approve pull requests', enable it in this repo: Settings -> Actions -> General -> Workflow permissions -> check 'Allow GitHub Actions to create and approve pull requests'. Or via CLI: gh api -X PUT repos/$GITHUB_REPOSITORY/actions/permissions/workflow -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true"
+
   update-major-tag:
     needs: release-please
     if: needs.release-please.outputs.release_created == 'true' && inputs.update-major-tag
