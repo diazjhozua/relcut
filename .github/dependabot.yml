@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      # fix(deps) so pin bumps produce a patch release for consumers
+      prefix: fix
+      include: scope
