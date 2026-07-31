@@ -52,6 +52,8 @@ you're ready to ship.
 | `release-type` | `simple` | release-please strategy; controls which version files get bumped (`simple` = `version.txt`, `node` = `package.json`, `python` = `pyproject.toml`, etc.) |
 | `target-branch` | `main` | Branch releases are cut from |
 | `update-major-tag` | `true` | Keep a moving major tag (`v1`, `v2`, ...) pointing at the latest release. Also applies while you are pre-1.0 (moves a `v0` tag) |
+| `config-file` | `release-please-config.json` | Path to a release-please config file (custom changelog sections, monorepos) |
+| `manifest-file` | `.release-please-manifest.json` | Path to the release-please manifest tracking released versions |
 
 ### Secrets
 
@@ -94,6 +96,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Shipping ${{ needs.release.outputs.tag_name }}"
+```
+
+## Enforcing conventional PR titles
+
+The whole system degrades silently if commits aren't conventional — no error,
+just "no release ever happens". Add the companion linter so PRs fail fast at
+review time instead:
+
+```yaml
+# .github/workflows/lint-pr.yml
+name: Lint PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  lint:
+    uses: diazjhozua/relcut/.github/workflows/lint-pr.yml@v1
 ```
 
 ## Requirements
