@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.1](https://github.com/diazjhozua/relcut/compare/v1.2.0...v1.2.1) (2026-07-31)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/checkout from 4.4.0 to 7.0.1 ([713c958](https://github.com/diazjhozua/relcut/commit/713c9583c612fa660384fe52e1839900e3b00b62))
+* **deps:** bump actions/checkout from 4.4.0 to 7.0.1 ([799783c](https://github.com/diazjhozua/relcut/commit/799783cf4f9f3df6e8c76b6afeebf90b02b91e7f))
+* **deps:** bump googleapis/release-please-action from 4.4.1 to 5.0.0 ([cc2d368](https://github.com/diazjhozua/relcut/commit/cc2d36853b459961935a39b4ba2a8f373c1c83ec))
+* **deps:** bump googleapis/release-please-action from 4.4.1 to 5.0.0 ([6798dca](https://github.com/diazjhozua/relcut/commit/6798dcaa35d5ed908ebbaddc35ce2819cc699e59))
+
 ## [1.2.0](https://github.com/diazjhozua/relcut/compare/v1.1.0...v1.2.0) (2026-07-31)
 
 
