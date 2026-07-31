@@ -15,6 +15,14 @@ on:
         description: "Keep a moving major tag (e.g. v1) pointing at the latest release"
         type: boolean
         default: true
+      config-file:
+        description: "Path to a release-please config file (for custom changelog sections, monorepos, etc.)"
+        type: string
+        default: release-please-config.json
+      manifest-file:
+        description: "Path to the release-please manifest file tracking released versions"
+        type: string
+        default: .release-please-manifest.json
     secrets:
       release-token:
         description: >-
@@ -55,6 +63,8 @@ jobs:
           token: ${{ secrets.release-token || github.token }}
           release-type: ${{ inputs.release-type }}
           target-branch: ${{ inputs.target-branch }}
+          config-file: ${{ inputs.config-file }}
+          manifest-file: ${{ inputs.manifest-file }}
 
   update-major-tag:
     needs: release-please
