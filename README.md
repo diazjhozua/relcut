@@ -1,5 +1,9 @@
 # relcut
 
+[![CI](https://github.com/diazjhozua/relcut/actions/workflows/ci.yml/badge.svg)](https://github.com/diazjhozua/relcut/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/diazjhozua/relcut)](https://github.com/diazjhozua/relcut/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 Cut releases automatically. A reusable GitHub Actions workflow that turns
 Conventional Commits on `main` into SemVer versions, changelogs, and GitHub
 Releases — powered by [release-please](https://github.com/googleapis/release-please).
