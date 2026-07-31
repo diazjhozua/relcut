@@ -37,6 +37,9 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    concurrency:
+      group: relcut-release-${{ github.ref }}
+      cancel-in-progress: false
     permissions:
       contents: write
       pull-requests: write
