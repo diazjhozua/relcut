@@ -51,7 +51,27 @@ you're ready to ship.
 |---|---|---|
 | `release-type` | `simple` | release-please strategy; controls which version files get bumped (`simple` = `version.txt`, `node` = `package.json`, `python` = `pyproject.toml`, etc.) |
 | `target-branch` | `main` | Branch releases are cut from |
-| `update-major-tag` | `true` | Keep a moving major tag (`v1`, `v2`, ...) pointing at the latest release |
+| `update-major-tag` | `true` | Keep a moving major tag (`v1`, `v2`, ...) pointing at the latest release. Also applies while you are pre-1.0 (moves a `v0` tag) |
+
+### Secrets
+
+| Secret | Required | Description |
+|---|---|---|
+| `release-token` | no | Token used to create the release PR, tags, and releases. Defaults to `GITHUB_TOKEN`. |
+
+> **Chaining workflows off releases?** Tags and releases created with the
+> default `GITHUB_TOKEN` do **not** trigger other workflows — so
+> `on: push: tags` or `on: release` in your repo will silently never fire.
+> Pass a PAT (or GitHub App token) with `contents: write` +
+> `pull-requests: write` to fix that:
+>
+> ```yaml
+> jobs:
+>   release:
+>     uses: diazjhozua/relcut/.github/workflows/release.yml@v1
+>     secrets:
+>       release-token: ${{ secrets.RELEASE_PAT }}
+> ```
 
 ### Outputs
 
